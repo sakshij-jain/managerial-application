@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AddEmployeeForm from './AddEmployeeForm';
 
-class AddEmployee extends Component{
+class AddEmployeeContainer extends Component {
   render() {
     return (
       <div>
@@ -12,4 +12,4 @@ class AddEmployee extends Component{
   }
 }
 
-export default AddEmployee;
+export default AddEmployeeContainer;

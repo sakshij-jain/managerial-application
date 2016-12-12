@@ -1,26 +1,22 @@
 const INITIAL_STATE = {
-  username: '',
   email: '',
   password: '',
-  gender:'',
-  country: 'India',
   processing: false,
   error: false
 }
 
-const AddEmployeeReducer = (state = INITIAL_STATE, action) => {
+const UserAuthenticateReducer = (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case 'EMP_PROP_CHANGED':
       return Object.assign({}, state, {[action.payload.propName]: action.payload.prop});
-    case 'EMP_CREATE':
-      return Object.assign({}, state, { processing : true})
-    case 'EMP_CREATE_SUCCESS':
+    case 'EMP_LOGIN_SUCCESS':
       return Object.assign({}, state, INITIAL_STATE);
-    case 'EMP_CREATE_ERROR':
+    case 'EMP_LOGIN_ERROR':
       return Object.assign({}, state, { processing: true, error: action.payload});
     default:
       return state;
   }
 }
 
-export default AddEmployeeReducer;
+export default UserAuthenticateReducer;

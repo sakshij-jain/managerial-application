@@ -5,8 +5,11 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
+import { Router, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import AddEmployee from './components/AddEmployee';
+import AddEmployeeContainer from './components/AddEmployeeContainer';
+import LoginContainer from './components/LoginContainer';
 
 class App extends React.Component{
   render() {
@@ -15,9 +18,8 @@ class App extends React.Component{
 
     return (
       <Provider store={store}>
-        <AddEmployee />
+        <LoginContainer />
       </Provider>
-
     )
   }
 }

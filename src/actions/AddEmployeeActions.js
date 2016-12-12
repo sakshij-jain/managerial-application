@@ -1,17 +1,20 @@
 import { dispatch } from 'redux-thunk';
 import axios from 'axios';
 
-export const handlePropChange = (prop) => {
+export const handlePropChange = (prop, propName) => {
   return {
     type: 'EMP_PROP_CHANGED',
-    payload: prop
+    payload: {
+      prop,
+      propName
+    }
   }
 }
 
 
 export const addNewEmployee = (prop) => {
 
-  const { name, email, password, gender, country } = prop;
+  const { username, email, password, gender, country } = prop;
 
   return (dispatch) => {
 
@@ -23,19 +26,16 @@ export const addNewEmployee = (prop) => {
       method: 'post',
       url: 'http://localhost:3000/api/employees',
       data:{
-        name,
-        email,
-        password,
-        gender,
-        country
+        username, email, password, gender, country
       }
     }).then( res => {
       dispatch({
         type: 'EMP_CREATE_SUCCESS',
-        payload: response.data
+        payload: res.data
       });
     })
     .catch( err => {
+      console.log(err);
       dispatch({
         type: 'EMP_CREATE_ERROR',
         payload: 'Failed to save employee'

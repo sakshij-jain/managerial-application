@@ -6,15 +6,20 @@ class TextBox extends Component{
     this.props.error ? <span>{error}</span> : ""
   }
 
+  handleChange(event) {
+    this.props.handleChange(event, this.props.name);
+  }
+
   render() {
 
-    const { label, type, name, placeholder, error } = this.props;
+    const { label, isSecure, name, placeholder, error, val } = this.props;
 
     return (
       <div className="form-group">
         <label htmlFor={name}>{label}</label>
-        <input type={type} className="form-control"
-               id={name} name={name} placeholder={placeholder} onChange={this.props.handleChange.bind(this)}  />
+        <input type={isSecure? "password" : "text"} className="form-control" value={val}
+               id={name} name={name} placeholder={placeholder}
+               onChange={this.handleChange.bind(this)} />
         <span>{error}</span>
       </div>
     )

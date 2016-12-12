@@ -13,33 +13,32 @@ class AddEmployeeForm extends Component{
     super()
   }
 
-  handleChange(event) {
-    console.log(event.target.value);
-    this.props.handlePropChange(event.target.value);
+  handleChange(event, propName) {
+    this.props.handlePropChange(event.target.value, propName);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
     this.props.addNewEmployee(this.props);
   }
+
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <TextBox label="Name" type="text" placeholder="Please enter name"
-                   name="name" error="is required" handleChange={this.handleChange}/>
-          <TextBox label="Email ID" type="text" placeholder="Please enter email id"
-                   name="email" error="is required" />
-          <TextBox label="Password" type="password" placeholder="Please enter password"
-                   name="password" error="is required" onChange={this.handleChange.bind(this)} />
-          <RadioBox type="radio" label="Female" name="gender"
-                    error="is required" onChange={this.handleChange.bind(this)} />
-          <RadioBox type="radio" label="Male" name="gender"
-                    error="is required" onChange={this.handleChange.bind(this)} />
-          <SelectBox label="Select Country" name="country"
-                     error="is required" onChange={this.handleChange.bind(this)} />
-                   <button type="submit" className="btn btn-primary">Add New Employee</button>
+          <TextBox label="Name" placeholder="Please enter name" val={this.props.username}
+                   name="username" error="is required" handleChange={this.handleChange.bind(this)} />
+                 <TextBox label="Email ID" placeholder="Please enter email id" val={this.props.email}
+                   name="email" error="is required" handleChange={this.handleChange.bind(this)} />
+          <TextBox label="Password" isSecure placeholder="Please enter password" val={this.props.password}
+             name="password" error="is required" handleChange={this.handleChange.bind(this)} />
+          <RadioBox type="radio" label="Female" name="gender" value="female" val={this.props.gender}
+              error="is required" handleChange={this.handleChange.bind(this)} />
+          <RadioBox type="radio" label="Male" name="gender" value="male" val={this.props.gender}
+              error="is required" handleChange={this.handleChange.bind(this)} />
+          <SelectBox label="Select Country" name="country" val={this.props.country}
+                     error="is required" handleChange={this.handleChange.bind(this)} />
+          <button type="submit" className="btn btn-primary">Add New Employee</button>
         </form>
       </div>
     )
@@ -48,10 +47,10 @@ class AddEmployeeForm extends Component{
 
 const mapStateToProps = ({addEmployee}) => {
 
-  const { name, email, password, gender, country } = addEmployee;
+  const { username, email, password, gender, country } = addEmployee;
 
   return {
-    name, email, password, gender, country
+    username, email, password, gender, country
   }
 }
 
