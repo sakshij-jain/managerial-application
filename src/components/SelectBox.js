@@ -8,7 +8,7 @@ class SelectBox extends Component{
 
   render() {
 
-    const { label, name, error } = this.props;
+    const { label, name } = this.props;
 
     return (
       <div className="form-group">

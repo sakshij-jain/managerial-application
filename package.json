@@ -28,7 +28,7 @@
     "expose-loader": "^0.7.1",
     "html-webpack-plugin": "2.22.0",
     "react": "^15.2.1",
-    "react-bootstrap": "^0.30.3",
+    "react-bootstrap": "^0.30.7",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.2.1",

@@ -14,7 +14,7 @@ export const handlePropChange = (prop, propName) => {
 
 export const addNewEmployee = (prop) => {
 
-  const { username, email, password, gender, country } = prop;
+  const { username, email, password, gender, country, ismanager } = prop;
 
   return (dispatch) => {
 
@@ -26,7 +26,7 @@ export const addNewEmployee = (prop) => {
       method: 'post',
       url: 'http://localhost:3000/api/employees',
       data:{
-        username, email, password, gender, country
+        username, email, password, gender, country, ismanager
       }
     }).then( res => {
       dispatch({

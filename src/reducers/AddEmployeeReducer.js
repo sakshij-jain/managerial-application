@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   gender:'',
+  ismanager: 'N',
   country: 'India',
   processing: false,
   error: false

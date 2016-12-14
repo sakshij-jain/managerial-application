@@ -1,7 +1,8 @@
 import { dispatch } from 'redux-thunk';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 
-export const userAuthenticate = (prop) => {
+export const loginUser = (prop) => {
 
   const { email, password } = prop;
 
@@ -19,12 +20,23 @@ export const userAuthenticate = (prop) => {
         }
       },
     }).then( res => {
-      console.log(res.data);
+      if(res.data[0].ismanager === "Y"){
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: res.data
+        });
+        browserHistory.push('/emp');
+      } else {
+        dispatch({
+          type: "LOGIN_ERROR",
+          payload: "No record found."
+        });
+      }
     })
     .catch( err => {
       console.log(err);
       dispatch({
-        type: 'EMP_LOGIN_ERROR',
+        type: 'LOGIN_ERROR',
         payload: 'Failed to search'
       });
     })

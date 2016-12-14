@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import TextBox from './TextBox';
-
-import { handlePropChange, userAuthenticate } from '../actions';
-import { connect } from 'react-redux';
+import { handlePropChange, loginUser } from '../actions';
 
 class LoginForm extends Component {
 
@@ -17,16 +17,21 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.userAuthenticate(this.props);
+    this.props.loginUser(this.props);
   }
 
   render() {
     return (
       <div>
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <h3>Login Form</h3>
+          </div>
+        </div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <TextBox label="User ID" placeholder="Please enter email id"
+          <TextBox label="User ID" placeholder="Please enter email id" val={this.props.email}
                    name="email" error="is required" handleChange={this.handleChange.bind(this)} />
-          <TextBox label="Password" isSecure placeholder="Please enter password"
+          <TextBox label="Password" isSecure placeholder="Please enter password" val={this.props.password}
                   name="password" error="is required" handleChange={this.handleChange.bind(this)} />
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
@@ -35,9 +40,9 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = ({userAuthenticate}) => {
+const mapStateToProps = ({login}) => {
 
-  const { email, password } = userAuthenticate;
+  const { email, password } = login;
 
   return {
     email, password
@@ -46,5 +51,5 @@ const mapStateToProps = ({userAuthenticate}) => {
 
 export default connect(mapStateToProps, {
   handlePropChange,
-  userAuthenticate
+  loginUser
 })(LoginForm);
