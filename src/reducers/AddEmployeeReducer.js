@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   ismanager: 'N',
   country: 'India',
   processing: false,
-  error: false
+  error: false,
+  employee: {}
 }
 
 const AddEmployeeReducer = (state = INITIAL_STATE, action) => {

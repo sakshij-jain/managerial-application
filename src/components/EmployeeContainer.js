@@ -19,7 +19,7 @@ class EmployeeContainer extends Component {
     this.props.getEmployees();
   }
 
-  handleClick(evt) {
+  handleClick(evt, clickType) {
     evt.preventDefault();
     var id = evt.target.attributes.id.value;
     this.props.getEmployeeByID(id);

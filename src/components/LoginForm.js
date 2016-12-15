@@ -8,7 +8,9 @@ import { handlePropChange, loginUser } from '../actions';
 class LoginForm extends Component {
 
   constructor() {
-    super()
+    super();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event, propName) {
@@ -29,15 +31,20 @@ class LoginForm extends Component {
           </div>
         </div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <TextBox label="User ID" placeholder="Please enter email id" val={this.props.email}
-                   name="email" error="is required" handleChange={this.handleChange.bind(this)} />
+          <TextBox label="User ID" isEmail placeholder="Please enter email id" val={this.props.email}
+                   name="email" error="is required" handleChange={this.handleChange} />
           <TextBox label="Password" isSecure placeholder="Please enter password" val={this.props.password}
-                  name="password" error="is required" handleChange={this.handleChange.bind(this)} />
+                  name="password" error="is required" handleChange={this.handleChange} />
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
       </div>
     )
   }
+}
+
+LoginForm.propTypes = {
+  email: React.PropTypes.string.isRequired,
+  password: React.PropTypes.string.isRequired
 }
 
 const mapStateToProps = ({login}) => {

@@ -13,7 +13,7 @@ class RadioBox extends Component{
     return (
       <div className="radio-inline">
         <label><input type="radio" name={name} value={value}
-          onChange={this.handleChange.bind(this)} />{label}</label>
+          onChange={this.handleChange.bind(this)}/>{label}</label>
       </div>
     )
   }
